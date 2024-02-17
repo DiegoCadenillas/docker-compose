@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql
+    container_name: mi-mysql-composer
+    environment:
+      MYSQL_ROOT_PASSWORD: daweb724
+    networks:
+      - red-mysql
+    volumes:
+      - vol-mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    networks:
+      - red-mysql
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mi-mysql-composer
+
+
+volumes:
+  vol-mysql:
+
+networks:
+  red-mysql:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
