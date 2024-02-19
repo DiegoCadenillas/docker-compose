@@ -28,7 +28,7 @@ services:
     ports:
       - 8081:80
     links:
-      - nodejs
+      - mi_node
     environment:
       NGINX_HOST: mi_node
 
