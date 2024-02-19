@@ -12,7 +12,7 @@ services:
   nodejs:
     build: .
     image: mi-node-image
-    container_name: mi-node
+    container_name: mi_node
     networks:
       mongo-node-net:
         ipv4_address: 172.40.0.11
@@ -27,6 +27,8 @@ services:
         ipv4_address: 172.80.0.10
     ports:
       - 8081:80
+    environment:
+      NGINX_HOST: mi_node
 
 networks:
   mongo-node-net:
