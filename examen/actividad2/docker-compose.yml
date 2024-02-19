@@ -11,7 +11,6 @@ services:
       - 27017
   nodejs:
     build: .
-    command: bash -c "npm install && npm start"
     image: mi-node-image
     container_name: mi_node
     networks:
@@ -19,8 +18,8 @@ services:
         ipv4_address: 172.40.0.11
       node-nginx-net:
         ipv4_address: 172.80.0.11
-    ports:
-      - 8080:8080
+    expose:
+      - 8080
   nginx:
     image: nginx
     networks:
@@ -28,6 +27,8 @@ services:
         ipv4_address: 172.80.0.10
     ports:
       - 8081:80
+    links:
+      - nodejs
     environment:
       NGINX_HOST: mi_node
 
