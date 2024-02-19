@@ -1,0 +1,12 @@
+services:
+  
+
+networks:
+  red-nodejs:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+
+volumes:
+  vol-nodejs:
