@@ -27,8 +27,6 @@ services:
         ipv4_address: 172.80.0.10
     ports:
       - 8081:80
-    volumes:
-      - 
     environment:
       NGINX_HOST: mi_node
 
