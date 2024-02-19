@@ -4,7 +4,7 @@ EXPOSE 8080
 
 WORKDIR /var/app
 
-ADD  . /var/app
+ADD  . .
 
 RUN npm install
 
