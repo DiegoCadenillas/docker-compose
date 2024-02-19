@@ -1,12 +1,44 @@
 services:
-  
+  mongo:
+    image: mongo
+    container_name: mi_mongo
+    volumes:
+      - mongo-vol:/data/db
+    networks:
+      mongo-node-net:
+        ipv4_address: 172.40.0.10
+    ports:
+      - 172.40.0.11:27017:27017
+  nodejs:
+    build: .
+    image: mi-node-image
+    container_name: mi-node
+    networks:
+      mongo-node-net:
+        ipv4_address: 172.40.0.11
+      node-nginx-net:
+        ipv4_address: 172.80.0.11
+    ports: 
+      - 172.40.0.10:27017:27017
+      - 172.80.0.10:3000:3000
+  nginx:
+    image: nginx
+    networks:
+      node-nginx-net:
+        ipv4_address: 172.80.0.10
+    ports:
+      - 172.80.0.11:3000:3000
+      - 80:80
 
 networks:
-  red-nodejs:
-    driver: bridge
+  mongo-node-net:
     ipam:
       config:
-        - subnet: 172.30.0.0/16
+        - subnet: 172.40.0.0/16
+  node-nginx-net:
+    ipam:
+      config:
+        - subnet: 172.80.0.0/16
 
 volumes:
-  vol-nodejs:
+  mongo-vol:
