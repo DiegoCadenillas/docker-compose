@@ -11,7 +11,7 @@ services:
       - 27017
   nodejs:
     build: .
-    command: bash -c "npm instalñ && npm start"
+    command: bash -c "npm install && npm start"
     image: mi-node-image
     container_name: mi_node
     networks:
