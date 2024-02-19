@@ -11,6 +11,7 @@ services:
       - 27017
   nodejs:
     build: .
+    command: npm start
     image: mi-node-image
     container_name: mi_node
     networks:
